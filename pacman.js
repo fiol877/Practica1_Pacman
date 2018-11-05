@@ -34,49 +34,60 @@ var mapa = [
 [0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0]
 ]
 
+layout();
 fantasmes();
 
-function fantasmes(){
-    for(var i=1;i<3;i++){
-        var avançar = false;
-        do{
-            var i = Math.floor(Math.random() * mapa.length)
-            var y = Math.floor(Math.random() * mapa[0].length)
-                if (mapa[i][y]==1)
-                    mapa[i][y]="F";
-                    avançar= true
+
+
+
+function layout(){
+    var rows = "";
+    for (var x=0;x<mapa.length;x++){
+        for (var y=0;y<mapa[x].length;y++){
+            if (mapa[x][y]==1){
+                mapa[x][y] = "";
+                rows+=mapa[x][y] + " ";
+            }
             
-        }while(avançar==false)
-        
-    }
-    
-}
+            else{
+            mapa[x][y] = "";
+            rows +=mapa[x][y] + "X";
+            }
 
-var rows = "";
-
-for (var i=0; i<mapa.length;i++){
-    for (var y=0;y<mapa.length;y++){
-        if(mapa[i][y] == 1){
-            mapa[i][y] = "";
-            rows +=mapa[i][y] + " ";
+            if (y==(mapa[x].length)-1){
+                rows+=mapa[x][y]+"\n";
+            }
+            else{
+                rows+=mapa[x][y]+" ";
+            }
         }
-        
-        else{
-            mapa[i][y] = "";
-            rows +=mapa[i][y] + "X";
-        }
-        
-        //Salt de linea
-        if (y==(mapa[i].lenght)-1){
-            rows +=mapa[i][y];
-        }
-        else rows +=mapa[i][y]+" ";
-        
-        
         
     }
     console.log(rows);
-    rows = "";
-
 }
-    
+
+
+
+function fantasmes(){
+    var rows="";
+    for(var i=1;i<=3;i++){
+        var avanza = false;
+        
+        do{
+            var x = Math.floor(Math.random() * mapa.length);
+            var y = Math.floor(Math.random() * mapa[0].length);
+                if (mapa[x][y]==1){
+                    mapa[x][y]="F";
+                    avanza = true;
+                }
+        }while(avanza==false);
+        
+        }
+    layout();
+}
+
+
+function jugador(){
+    var posicio = null;
+    direccio = null;
+}
